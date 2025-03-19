@@ -1,0 +1,15 @@
+{% block content %}
+<h2>Snacks Menu for {{ today }}</h2>
+{% if menus %}
+<ul>
+    {% for item in menus %}
+    <li>
+        <strong>{{ item.meal_name }}</strong> - {{ item.description }}
+        [Price: {{ item.price }}]
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No snacks found for today.</p>
+{% endif %}
+{% endblock %}

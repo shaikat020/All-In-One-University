@@ -1,0 +1,38 @@
+{% block content %}
+<h1 class="text-center mb-4">Weekly Cafeteria Menu</h1>
+
+<!-- Loop over each day in day_groups -->
+{% for this_day, items in day_groups.items %}
+<!-- Day Name, centered -->
+<h2 class="mt-5 text-center">
+    {{ this_day|date:"l" }}
+</h2>
+
+<!-- Table container to control width and centering -->
+<div class="table-responsive" style="max-width: 800px; margin: 0 auto;">
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
+            <tr>
+                <th style="width: 20%;">Meal Type</th>
+                <th style="width: 60%;">Meal Item</th>
+                <th style="width: 20%;" class="text-end">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <!-- Meal Type (Breakfast, Lunch, etc.) -->
+                <td>{{ item.meal_type }}</td>
+
+                <!-- Meal Item (Use item.description or item.meal_name) -->
+                <td>{{ item.description }}</td>
+
+                <!-- Price (Right-aligned) -->
+                <td class="text-end">{{ item.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endfor %}
+{% endblock %}

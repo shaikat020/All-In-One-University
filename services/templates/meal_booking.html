@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5" style="max-width: 600px;">
+    <h2 class="text-center text-danger mb-4">
+        Your Meal Booking
+        <!-- Example: dynamic ID if you want ->  -->
+        <!-- e.g. "Booking ID: 61" if you had logic or an existing booking -->
+    </h2>
+
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        <!-- Display form errors if any -->
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+
+        <div class="mb-3">
+            <label for="id_date_from" class="form-label">Select Date From:</label>
+            {{ form.date_from|add_class:"form-control" }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_date_to" class="form-label">Select Date To:</label>
+            {{ form.date_to|add_class:"form-control" }}
+        </div>
+
+        <div class="mb-3">
+            <!-- If you want custom labels: -->
+            <div class="form-check">
+                {{ form.breakfast }}
+                <label class="form-check-label">Breakfast (Sehri)</label>
+            </div>
+            <div class="form-check">
+                {{ form.lunch }}
+                <label class="form-check-label">Lunch (Iftar)</label>
+            </div>
+            <div class="form-check">
+                {{ form.dinner }}
+                <label class="form-check-label">Dinner</label>
+            </div>
+        </div>
+
+        <p class="text-muted">
+            Last time for booking tomorrow's meal is 02:30 PM
+        </p>
+
+        <button type="submit" class="btn btn-success">Book Meal</button>
+    </form>
+</div>
+
+{% endblock %}
